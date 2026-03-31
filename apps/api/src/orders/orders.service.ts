@@ -81,7 +81,7 @@ export class OrdersService {
     let taxTotal = 0;
 
     const orderItems = dto.items.map(item => {
-      const product = productMap.get(item.productId);
+      const product = productMap.get(item.productId) as any;
       if (!product) throw new BadRequestException(`Product ${item.productId} not found in catalog`);
       const unitPrice = Number(product.sellingPrice);
       const taxRate = Number((product as any).taxRate?.rate ?? 0);
