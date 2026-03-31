@@ -1,0 +1,42 @@
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +135ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDatabaseModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPassportModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mJwtModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mUsersModule dependencies initialized[39m[38;5;3m +2ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRolesModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPermissionsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAuditLogsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mVendorsModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mExpenseCategoriesModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigHostModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPostingEngineModule dependencies initialized[39m[38;5;3m +4ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCustomerAddressesModule dependencies initialized[39m[38;5;3m +2ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mOrderItemsModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPaymentAllocationsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCustomersModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mProductsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCategoriesModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTaxRatesModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDeliveryZonesModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDeliverySlotsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mOrdersModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mInvoiceItemsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAccountsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mJournalEntriesModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mReportsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDashboardModule dependencies initialized[39m[38;5;3m +1ms[39m
+[31m[Nest] 20952  - [39m28/03/2026, 8:51:25 am [31m  ERROR[39m [38;5;3m[ExceptionHandler] [39m[31m`key_id` or `oauthToken` is mandatory[39m
+Error: `key_id` or `oauthToken` is mandatory
+    at new Razorpay (C:\Users\ameen\Downloads\Wowcado ERP\node_modules\.pnpm\razorpay@2.9.6\node_modules\razorpay\dist\razorpay.js:34:13)
+    at new RazorpayService (C:\Users\ameen\Downloads\Wowcado ERP\apps\api\dist\razorpay\razorpay.service.js:64:19)
+    at Injector.instantiateClass (C:\Users\ameen\Downloads\Wowcado ERP\node_modules\.pnpm\@nestjs+core@10.4.22_@nestjs+common@10.4.22_class-transformer@0.5.1_class-validator@0.15.1_re_daf63xqgndmpwqxcfk5ukyyxdq\node_modules\@nestjs\core\injector\injector.js:373:19)
+    at callback (C:\Users\ameen\Downloads\Wowcado ERP\node_modules\.pnpm\@nestjs+core@10.4.22_@nestjs+common@10.4.22_class-transformer@0.5.1_class-validator@0.15.1_re_daf63xqgndmpwqxcfk5ukyyxdq\node_modules\@nestjs\core\injector\injector.js:65:45)
+    at async Injector.resolveConstructorParams (C:\Users\ameen\Downloads\Wowcado ERP\node_modules\.pnpm\@nestjs+core@10.4.22_@nestjs+common@10.4.22_class-transformer@0.5.1_class-validator@0.15.1_re_daf63xqgndmpwqxcfk5ukyyxdq\node_modules\@nestjs\core\injector\injector.js:145:24)
+    at async Injector.loadInstance (C:\Users\ameen\Downloads\Wowcado ERP\node_modules\.pnpm\@nestjs+core@10.4.22_@nestjs+common@10.4.22_class-transformer@0.5.1_class-validator@0.15.1_re_daf63xqgndmpwqxcfk5ukyyxdq\node_modules\@nestjs\core\injector\injector.js:70:13)
+    at async Injector.loadProvider (C:\Users\ameen\Downloads\Wowcado ERP\node_modules\.pnpm\@nestjs+core@10.4.22_@nestjs+common@10.4.22_class-transformer@0.5.1_class-validator@0.15.1_re_daf63xqgndmpwqxcfk5ukyyxdq\node_modules\@nestjs\core\injector\injector.js:98:9)
+    at async C:\Users\ameen\Downloads\Wowcado ERP\node_modules\.pnpm\@nestjs+core@10.4.22_@nestjs+common@10.4.22_class-transformer@0.5.1_class-validator@0.15.1_re_daf63xqgndmpwqxcfk5ukyyxdq\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at async InstanceLoader.createInstancesOfProviders (C:\Users\ameen\Downloads\Wowcado ERP\node_modules\.pnpm\@nestjs+core@10.4.22_@nestjs+common@10.4.22_class-transformer@0.5.1_class-validator@0.15.1_re_daf63xqgndmpwqxcfk5ukyyxdq\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
