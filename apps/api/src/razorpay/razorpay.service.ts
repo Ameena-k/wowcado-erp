@@ -54,8 +54,8 @@ export class RazorpayService {
       notes: rzNotes,
     });
 
-    this.logger.log(`Razorpay order created: ${order.id} | Amount: ₹${amountInr}`);
-    return order;
+    this.logger.log(`Razorpay order created: ${order.id} | Amount: \u20B9${amountInr}`);
+    return { ...order, keyId: process.env.RAZORPAY_KEY_ID };
   }
 
   // ── Webhook Signature Verification ─────────────────────────────────────────
