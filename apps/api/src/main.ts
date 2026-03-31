@@ -43,7 +43,7 @@ async function bootstrap() {
     whitelist: true,
     transformOptions: { enableImplicitConversion: true }
   }));
-  await app.listen(process.env.PORT ?? 3001);
+  await app.listen(process.env.PORT ?? 3001, '0.0.0.0');
   console.log(`API running on port ${process.env.PORT ?? 3001} | CORS allowed for: ${allowedOrigins.join(', ')}`);
 }
 
