@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { format } from 'date-fns';
 import { useRouter } from 'next/navigation';
 import { WhatsAppLogsCard } from '@/components/ui/WhatsAppLogsCard';
+import { RazorpayPayButton } from '@/components/RazorpayPayButton';
 
 export default function InvoiceDetailPage({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -26,19 +27,21 @@ export default function InvoiceDetailPage({ params }: { params: { id: string } }
   const [sendingWa, setSendingWa] = React.useState(false);
   const [waSuccessMsg, setWaSuccessMsg] = React.useState('');
 
-  React.useEffect(() => {
-    async function fetchInvoice() {
-      try {
-        const res = await api.get(`/invoices/${params.id}`);
-        setInvoice(res.data);
-      } catch (err: any) {
-        setError('Invoice Record not found natively.');
-      } finally {
-        setLoading(false);
-      }
+  const fetchInvoice = React.useCallback(async () => {
+    try {
+      setLoading(true);
+      const res = await api.get(`/invoices/${params.id}`);
+      setInvoice(res.data);
+    } catch (err: any) {
+      setError('Invoice Record not found natively.');
+    } finally {
+      setLoading(false);
     }
-    fetchInvoice();
   }, [params.id]);
+
+  React.useEffect(() => {
+    fetchInvoice();
+  }, [fetchInvoice]);
 
   if (loading) return <LoadingState message="Verifying financial ledger..." />;
   if (error) return <div className="p-8 text-red-500 font-medium bg-red-50 rounded-xl border border-red-100">{error}</div>;
@@ -261,9 +264,10 @@ export default function InvoiceDetailPage({ params }: { params: { id: string } }
                         
                         {/* Payments phase 2 action placeholder */}
                         {invoice.status !== 'DRAFT' && invoice.status !== 'CANCELLED' && Number(invoice.balanceDue) > 0 && (
-                            <div className="pt-4 mt-2 border-t border-slate-200 hidden lg:block">
+                            <div className="pt-4 mt-2 mb-2 border-t border-slate-200 hidden lg:flex flex-col gap-2">
+                                <RazorpayPayButton invoice={invoice} onPaymentComplete={fetchInvoice} />
                                 <Link href={`/payments/create?invoiceId=${invoice.id}&customerId=${invoice.customerId}`}>
-                                   <Button className="w-full bg-indigo-600 hover:bg-indigo-700 shadow-md h-11 text-white text-sm font-semibold tracking-wide">
+                                   <Button className="w-full bg-slate-100 hover:bg-slate-200 shadow-sm border border-slate-300 h-11 text-slate-700 text-sm font-semibold tracking-wide" variant="outline">
                                        <CreditCard className="w-4 h-4 mr-2" /> RECORD REMITTANCE
                                    </Button>
                                 </Link>
