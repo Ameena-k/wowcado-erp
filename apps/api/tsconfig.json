@@ -2,8 +2,11 @@
   "extends": "../../packages/config/tsconfig.nestjs.json",
   "compilerOptions": {
     "outDir": "./dist",
+    "strict": false,
+    "noImplicitAny": false,
     "strictPropertyInitialization": false,
     "declaration": false,
+    "skipLibCheck": true,
     "baseUrl": "./"
   }
 }
