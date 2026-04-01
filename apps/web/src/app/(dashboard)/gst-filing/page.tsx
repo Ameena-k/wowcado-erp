@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
-import { ChevronDown, FileText, ShoppingCart, ShoppingBag, AlertCircle, PlayCircle, UploadCloud, CheckCircle2 } from 'lucide-react';
+import { ChevronDown, FileText, ShoppingCart, ShoppingBag, AlertCircle, UploadCloud } from 'lucide-react';
 import api from '@/lib/api-client';
 
 export default function GstFilingDashboard() {
@@ -79,10 +79,8 @@ export default function GstFilingDashboard() {
 
       {/* Main Content Area */}
       <div className="flex-1 overflow-y-auto p-8 pb-32">
-        <div className="w-full max-w-7xl mx-auto flex gap-6">
-          
-          {/* Left Cards Area */}
-          <div className="flex-1 space-y-6">
+        <div className="w-full max-w-3xl mx-auto">
+          <div className="space-y-6">
             
             {/* GSTR-3B Card */}
             <Card className="p-6 bg-white shadow-sm border-slate-200 flex items-center justify-between rounded-xl">
@@ -232,65 +230,6 @@ export default function GstFilingDashboard() {
                  </div>
                </div>
             </Card>
-          </div>
-
-          {/* Right Sidebar Area (Videos & Activity) */}
-          <div className="w-[340px] flex flex-col gap-6">
-             <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-                <h4 className="text-xs font-bold text-slate-500 tracking-wider mb-4">VIDEO TUTORIALS</h4>
-                <div className="space-y-4">
-                  {[
-                    { title: "How do I file GSTR-1 (English)?", time: "6:46" },
-                    { title: "How do I file GSTR-1 (Hindi)?", time: "6:46" },
-                    { title: "Learn about GSTR-3B Filing", time: "8:35" },
-                    { title: "Learn about GSTR-2B Matching", time: "4:20" }
-                  ].map((video, i) => (
-                     <div key={i} className="flex gap-3 group cursor-pointer items-center">
-                        <div className="w-[72px] h-[48px] bg-slate-100 border border-slate-200 rounded flex items-center justify-center flex-shrink-0 relative overflow-hidden group-hover:border-indigo-300 transition-colors">
-                           <div className="absolute inset-0 bg-white/50 backdrop-blur-[1px]"></div>
-                           <PlayCircle className="w-6 h-6 text-slate-400 relative z-10 group-hover:text-indigo-500 group-hover:scale-110 transition-all" />
-                           <div className="absolute bottom-1 right-1 bg-black/60 text-white text-[9px] px-1 rounded z-10 font-medium">
-                             {video.time}
-                           </div>
-                        </div>
-                        <p className="text-[13px] font-medium text-slate-700 group-hover:text-indigo-600 line-clamp-2">{video.title}</p>
-                     </div>
-                  ))}
-                </div>
-             </div>
-
-             <div className="bg-white rounded-xl border border-slate-200 pt-5 pb-2 shadow-sm flex-1">
-                <div className="flex gap-4 px-5 border-b border-slate-100 mb-4 text-xs font-bold text-slate-500 tracking-wider">
-                   <div className="pb-3 border-b-2 border-slate-800 text-slate-800">RECENT ACTIVITY</div>
-                   <div className="pb-3 hover:text-slate-800 cursor-pointer">HSN/SAC Updates</div>
-                </div>
-                
-                <div className="px-5 space-y-4 relative">
-                   <div className="absolute left-[27px] top-2 bottom-8 w-px bg-slate-200"></div>
-                   
-                   <div className="relative pl-6">
-                      <div className="absolute left-[-2px] top-1 w-2 h-2 rounded-full bg-blue-500 ring-4 ring-white"></div>
-                      <div className="flex items-center gap-2 mb-1">
-                         <span className="text-[13px] font-semibold text-slate-800">System Bot</span>
-                         <span className="text-[11px] text-slate-400">12/02/2026 05:26 PM</span>
-                      </div>
-                      <div className="bg-slate-50 border border-slate-100 rounded-lg p-3 mt-2 text-[13px] text-slate-600 leading-snug">
-                         GSTR-2B Return generated for February 2026 with 0 ITC mismatches verified by API.
-                      </div>
-                   </div>
-
-                   <div className="relative pl-6">
-                      <div className="absolute left-[-2px] top-1 w-2 h-2 rounded-full bg-blue-500 ring-4 ring-white"></div>
-                      <div className="flex items-center gap-2 mb-1">
-                         <span className="text-[13px] font-semibold text-slate-800">Optik Accounting</span>
-                         <span className="text-[11px] text-slate-400">10/02/2026 09:12 AM</span>
-                      </div>
-                      <div className="bg-slate-50 border border-slate-100 rounded-lg p-3 mt-2 text-[13px] text-slate-600 leading-snug">
-                         GSTR-1 Return mapped from 40 invoices successfully. Pre-flight validation passed.
-                      </div>
-                   </div>
-                </div>
-             </div>
           </div>
         </div>
       </div>
