@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import Link from 'next/link';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { ChevronDown, FileText, ShoppingCart, ShoppingBag, AlertCircle, UploadCloud } from 'lucide-react';
@@ -90,9 +91,11 @@ export default function GstFilingDashboard() {
                   </div>
                   <h3 className="font-semibold text-[15px] text-slate-900">GSTR-3B Summary</h3>
                </div>
-               <Button className="bg-[#4b8df8] hover:bg-[#3b7ee8] text-white text-xs font-medium h-9 px-4 rounded shadow-sm">
-                 View Summary
-               </Button>
+               <Link href="/gst-filing/gstr-3b">
+                 <Button className="bg-[#4b8df8] hover:bg-[#3b7ee8] text-white text-xs font-medium h-9 px-4 rounded shadow-sm">
+                   View Summary
+                 </Button>
+               </Link>
             </Card>
 
             {/* GSTR-1 Card */}
