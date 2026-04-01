@@ -3,7 +3,6 @@ import {
   Req, Res, RawBodyRequest, HttpCode, Headers, Logger, Body
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { Public } from '../auth/auth.guard';
 import { RazorpayService } from './razorpay.service';
 
 @Controller('razorpay')
@@ -13,7 +12,6 @@ export class RazorpayController {
   constructor(private readonly razorpayService: RazorpayService) { }
 
   // ── Create Razorpay Order (called by admin/server before Checkout) ──────────
-  @Public()
   @Post('orders')
   async createOrder(@Body() body: any) {
     const { amountInr, receipt, invoiceId, customerId, notes } = body;
