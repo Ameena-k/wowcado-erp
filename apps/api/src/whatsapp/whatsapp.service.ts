@@ -185,17 +185,10 @@ export class WhatsappService {
     return this.sendTemplateMessage({
       customerId: invoice.customerId,
       phone: invoice.customer.phone,
-      templateName: 'invoice_issued',
+      templateName: 'hello_world',
       linkedEntityType: 'INVOICE',
       linkedEntityId: invoice.id,
-      variables: {
-        bodyParameters: [
-          invoice.customer.name,
-          invoice.invoiceNumber,
-          Number(invoice.grandTotal).toString()
-        ],
-        buttonParameters: [invoice.id]
-      }
+      variables: undefined
     });
   }
 
