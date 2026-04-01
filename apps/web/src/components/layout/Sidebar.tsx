@@ -19,7 +19,8 @@ import {
   Activity,
   Zap,
   Building2,
-  MessageSquare
+  MessageSquare,
+  FileSignature
 } from 'lucide-react';
 
 type NavItem = {
@@ -54,6 +55,12 @@ const navGroups: { heading: string; items: NavItem[] }[] = [
     items: [
       { href: '/reports', icon: BarChart, label: 'Reports' },
       { href: '/gateway', icon: Zap, label: 'Gateway Events' },
+    ],
+  },
+  {
+    heading: 'Filing & Compliance',
+    items: [
+      { href: '/gst-filing', icon: FileSignature, label: 'GST Filing' },
     ],
   },
   {

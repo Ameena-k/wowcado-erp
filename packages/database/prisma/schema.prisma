@@ -128,21 +128,23 @@ model ExpenseCategory {
 }
 
 model Product {
-  id           String  @id @default(uuid()) @db.Uuid
-  sku          String  @unique
-  name         String
-  categoryId   String  @db.Uuid
-  unit         String
-  sellingPrice Decimal @db.Decimal(10, 2)
-  taxRateId    String  @db.Uuid
-  active       Boolean @default(true)
-  description  String?
+  id                String  @id @default(uuid()) @db.Uuid
+  sku               String  @unique
+  name              String
+  categoryId        String  @db.Uuid
+  unit              String
+  sellingPrice      Decimal @db.Decimal(10, 2)
+  taxRateId         String  @db.Uuid
+  active            Boolean @default(true)
+  description       String?
+  type              String  @default("GOODS") // GOODS or SERVICES
+  hsnSacCode        String?
   salesAccountId    String? @db.Uuid
   purchaseAccountId String? @db.Uuid
 
-  category       Category @relation(fields: [categoryId], references: [id])
-  taxRate        TaxRate  @relation(fields: [taxRateId], references: [id])
-  salesAccount   Account? @relation("ProductSalesAccount", fields: [salesAccountId], references: [id])
+  category        Category @relation(fields: [categoryId], references: [id])
+  taxRate         TaxRate  @relation(fields: [taxRateId], references: [id])
+  salesAccount    Account? @relation("ProductSalesAccount", fields: [salesAccountId], references: [id])
   purchaseAccount Account? @relation("ProductPurchaseAccount", fields: [purchaseAccountId], references: [id])
 
   orderItems   OrderItem[]
@@ -153,46 +155,52 @@ model Product {
 }
 
 model Customer {
-  id        String       @id @default(uuid()) @db.Uuid
-  name      String
-  phone     String       @unique
-  email     String?      @unique
-  status    RecordStatus @default(ACTIVE)
-  notes     String?
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
+  id              String       @id @default(uuid()) @db.Uuid
+  name            String
+  phone           String       @unique
+  email           String?      @unique
+  status          RecordStatus @default(ACTIVE)
+  notes           String?
+  gstin           String?      @unique
+  pan             String?
+  isGstRegistered Boolean      @default(false)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
 
-  addresses CustomerAddress[]
-  orders    Order[]
-  invoices  Invoice[]
-  payments  CustomerPayment[]
+  addresses        CustomerAddress[]
+  orders           Order[]
+  invoices         Invoice[]
+  payments         CustomerPayment[]
   whatsappMessages WhatsappMessageLog[]
 }
 
 model Society {
-  id             String            @id @default(uuid()) @db.Uuid
-  name           String            @unique
+  id             String   @id @default(uuid()) @db.Uuid
+  name           String   @unique
   areaOrLocality String?
-  isActive       Boolean           @default(true)
-  createdAt      DateTime          @default(now())
-  updatedAt      DateTime          @updatedAt
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
-  addresses      CustomerAddress[]
+  addresses CustomerAddress[]
 }
 
 model Vendor {
-  id            String          @id @default(uuid()) @db.Uuid
-  name          String
-  phone         String?
-  email         String?
-  address       String?
-  notes         String?
-  status        RecordStatus    @default(ACTIVE)
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  Expense       Expense[]
-  SupplierBill  SupplierBill[]
-  VendorPayment VendorPayment[]
+  id              String          @id @default(uuid()) @db.Uuid
+  name            String
+  phone           String?
+  email           String?
+  address         String?
+  notes           String?
+  status          RecordStatus    @default(ACTIVE)
+  gstin           String?         @unique
+  pan             String?
+  isGstRegistered Boolean         @default(false)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  Expense         Expense[]
+  SupplierBill    SupplierBill[]
+  VendorPayment   VendorPayment[]
 }
 
 model CustomerAddress {
@@ -202,9 +210,9 @@ model CustomerAddress {
   label         String?
   recipientName String
   phone         String
-  blockOrStreet   String
-  doorNo          String
-  landmark        String?
+  blockOrStreet String
+  doorNo        String
+  landmark      String?
   isDefault     Boolean  @default(false)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
@@ -324,6 +332,10 @@ model Invoice {
   subtotal      Decimal       @db.Decimal(12, 2)
   discountTotal Decimal       @default(0) @db.Decimal(10, 2)
   taxTotal      Decimal       @default(0) @db.Decimal(10, 2)
+  cgstTotal     Decimal       @default(0) @db.Decimal(10, 2)
+  sgstTotal     Decimal       @default(0) @db.Decimal(10, 2)
+  igstTotal     Decimal       @default(0) @db.Decimal(10, 2)
+  placeOfSupply String? // GST State Code
   grandTotal    Decimal       @db.Decimal(12, 2)
   paidAmount    Decimal       @default(0) @db.Decimal(12, 2)
   balanceDue    Decimal       @db.Decimal(12, 2)
@@ -348,6 +360,9 @@ model InvoiceItem {
   lineDiscountAmount  Decimal @default(0) @db.Decimal(10, 2)
   taxRateSnapshot     Decimal @db.Decimal(5, 2)
   taxAmount           Decimal @db.Decimal(10, 2)
+  cgstAmount          Decimal @default(0) @db.Decimal(10, 2)
+  sgstAmount          Decimal @default(0) @db.Decimal(10, 2)
+  igstAmount          Decimal @default(0) @db.Decimal(10, 2)
   lineTotal           Decimal @db.Decimal(12, 2)
 
   invoice Invoice  @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
@@ -433,8 +448,8 @@ model Account {
   journalLines     JournalEntryLine[]
   Expense          Expense[]
   SupplierBillItem SupplierBillItem[]
-  salesProducts    Product[] @relation("ProductSalesAccount")
-  purchaseProducts Product[] @relation("ProductPurchaseAccount")
+  salesProducts    Product[]          @relation("ProductSalesAccount")
+  purchaseProducts Product[]          @relation("ProductPurchaseAccount")
 }
 
 model JournalEntry {
@@ -521,11 +536,15 @@ model SupplierBill {
   dueDate    DateTime?
   status     SupplierBillStatus @default(DRAFT)
 
-  subtotal   Decimal @db.Decimal(12, 2)
-  taxTotal   Decimal @default(0) @db.Decimal(10, 2)
-  grandTotal Decimal @db.Decimal(12, 2)
-  paidAmount Decimal @default(0) @db.Decimal(12, 2)
-  balanceDue Decimal @db.Decimal(12, 2)
+  subtotal      Decimal @db.Decimal(12, 2)
+  taxTotal      Decimal @default(0) @db.Decimal(10, 2)
+  cgstTotal     Decimal @default(0) @db.Decimal(10, 2)
+  sgstTotal     Decimal @default(0) @db.Decimal(10, 2)
+  igstTotal     Decimal @default(0) @db.Decimal(10, 2)
+  placeOfSupply String?
+  grandTotal    Decimal @db.Decimal(12, 2)
+  paidAmount    Decimal @default(0) @db.Decimal(12, 2)
+  balanceDue    Decimal @db.Decimal(12, 2)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -541,6 +560,11 @@ model SupplierBillItem {
   description      String
   quantity         Int?
   unitPrice        Decimal @db.Decimal(10, 2)
+  taxRateSnapshot  Decimal @default(0) @db.Decimal(5, 2)
+  taxAmount        Decimal @default(0) @db.Decimal(10, 2)
+  cgstAmount       Decimal @default(0) @db.Decimal(10, 2)
+  sgstAmount       Decimal @default(0) @db.Decimal(10, 2)
+  igstAmount       Decimal @default(0) @db.Decimal(10, 2)
   lineTotal        Decimal @db.Decimal(12, 2)
   expenseAccountId String? @db.Uuid
 
@@ -579,39 +603,39 @@ model VendorPayment {
 // ── Razorpay Gateway Integration ──────────────────────────────────────────────
 
 enum GatewayEventStatus {
-  RECEIVED    // webhook arrived but not yet processed
-  PROCESSED   // successfully mapped to CustomerPayment
-  DUPLICATE   // idempotency guard triggered — already processed
-  IGNORED     // event type we don't act on (e.g. refund, pending)
-  FAILED      // processing threw an error
+  RECEIVED // webhook arrived but not yet processed
+  PROCESSED // successfully mapped to CustomerPayment
+  DUPLICATE // idempotency guard triggered — already processed
+  IGNORED // event type we don't act on (e.g. refund, pending)
+  FAILED // processing threw an error
 }
 
 model GatewayTransaction {
   id String @id @default(uuid()) @db.Uuid
 
   // Razorpay identifiers — razorpayEventId used as idempotency key
-  razorpayEventId   String  @unique   // X-Razorpay-Event-Id header
+  razorpayEventId   String  @unique // X-Razorpay-Event-Id header
   razorpayOrderId   String?
   razorpayPaymentId String?
   razorpaySignature String?
 
   // Event metadata
-  eventType         String            // e.g. "payment.captured"
-  status            GatewayEventStatus @default(RECEIVED)
-  rawPayload        Json              // full webhook body for audit
-  processingError   String?           // error message if status = FAILED
+  eventType       String // e.g. "payment.captured"
+  status          GatewayEventStatus @default(RECEIVED)
+  rawPayload      Json // full webhook body for audit
+  processingError String? // error message if status = FAILED
 
   // Linked ERP records (set after successful processing)
   customerPaymentId String? @db.Uuid
   invoiceId         String? @db.Uuid
 
   // Amount in paise (Razorpay native) and INR
-  amountPaise       Int?
-  amountInr         Decimal? @db.Decimal(12, 2)
-  currency          String?  @default("INR")
+  amountPaise Int?
+  amountInr   Decimal? @db.Decimal(12, 2)
+  currency    String?  @default("INR")
 
   // Merchant notes / metadata passed at order creation
-  notes             Json?
+  notes Json?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -632,15 +656,15 @@ model WhatsappMessageLog {
   customerId        String?               @db.Uuid
   phone             String
   templateName      String
-  linkedEntityType  String?               // e.g. 'ORDER', 'INVOICE', 'PAYMENT'
+  linkedEntityType  String? // e.g. 'ORDER', 'INVOICE', 'PAYMENT'
   linkedEntityId    String?               @db.Uuid
   payload           Json?
   providerMessageId String?
   status            WhatsappMessageStatus @default(QUEUED)
   errorReason       String?
-  
-  createdAt         DateTime              @default(now())
-  updatedAt         DateTime              @updatedAt
 
-  customer          Customer?             @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  customer Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
 }

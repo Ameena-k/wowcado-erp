@@ -32,6 +32,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { RazorpayModule } from './razorpay/razorpay.module';
 import { SocietiesModule } from './societies/societies.module';
 import { WhatsappModule } from './whatsapp/whatsapp.module';
+import { GstModule } from './gst/gst.module';
 
 @Module({
   imports: [
@@ -58,6 +59,7 @@ import { WhatsappModule } from './whatsapp/whatsapp.module';
     CustomerPaymentsModule,
     PaymentAllocationsModule,
     AccountsModule,
+    GstModule,
     JournalEntriesModule,
     PostingEngineModule,
     ExpensesModule,
