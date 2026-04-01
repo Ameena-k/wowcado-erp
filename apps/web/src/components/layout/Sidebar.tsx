@@ -74,7 +74,7 @@ export function Sidebar() {
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-500 shadow-lg shadow-indigo-500/20 text-white">
           <Activity className="h-5 w-5" />
         </div>
-        Wowcado <span className="text-indigo-400 font-medium">ERP</span>
+        Wowcado
       </div>
 
       {/* Nav Groups */}
