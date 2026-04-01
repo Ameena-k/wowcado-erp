@@ -91,6 +91,20 @@ export class WhatsappService {
           parameters: variables.bodyParameters.map((text: string) => ({ type: 'text', text: String(text) }))
         });
       }
+      
+      if (variables && variables.buttonParameters && variables.buttonParameters.length > 0) {
+        components.push({
+          type: 'button',
+          sub_type: 'url',
+          index: '0',
+          parameters: [
+            {
+              type: 'text',
+              text: String(variables.buttonParameters[0])
+            }
+          ]
+        });
+      }
 
       const payload = {
         messaging_product: 'whatsapp',
@@ -175,7 +189,11 @@ export class WhatsappService {
       linkedEntityType: 'INVOICE',
       linkedEntityId: invoice.id,
       variables: {
-        bodyParameters: [invoice.customer.name, invoice.invoiceNumber, Number(invoice.grandTotal).toString()]
+        bodyParameters: [
+          invoice.customer.name,
+          new Date(invoice.invoiceDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+        ],
+        buttonParameters: [invoice.id]
       }
     });
   }

@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } f
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { RolesGuard } from '../auth/roles.guard';
 import { Roles } from '../auth/roles.decorator';
+import { Public } from '../auth/auth.guard';
 import { InvoicesService } from './invoices.service';
 import { CreateInvoiceDto } from './dto/create-invoice.dto';
 import { UpdateInvoiceDto } from './dto/update-invoice.dto';
@@ -34,6 +35,7 @@ export class InvoicesController {
     return this.invoicesService.findAll(search, status, customerId);
   }
 
+  @Public()
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.invoicesService.findOne(id);
