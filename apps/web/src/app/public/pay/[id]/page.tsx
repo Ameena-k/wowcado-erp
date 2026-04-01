@@ -93,10 +93,7 @@ export default function PublicPaymentPage({ params }: { params: { id: string } }
           <div className="pt-2">
             {!isPaid ? (
                <RazorpayPayButton 
-                  invoiceId={invoice.id} 
-                  customerName={invoice.customer?.name} 
-                  amountInr={invoice.balanceDue} 
-                  customerId={invoice.customerId}
+                  invoice={invoice}
                />
             ) : (
                 <div className="w-full bg-emerald-50 text-emerald-800 text-center font-medium py-4 rounded-xl ring-1 ring-emerald-200 flex items-center justify-center gap-2">
