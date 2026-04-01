@@ -191,7 +191,8 @@ export class WhatsappService {
       variables: {
         bodyParameters: [
           invoice.customer.name,
-          new Date(invoice.invoiceDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+          invoice.invoiceNumber,
+          Number(invoice.grandTotal).toString()
         ],
         buttonParameters: [invoice.id]
       }
